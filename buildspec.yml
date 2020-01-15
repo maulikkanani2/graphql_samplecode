@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - rm -rf node_modules
+      - rm npm-shrinkwrap.json
+      - npm install --production
+      - find node_modules/* -mtime +10950 -exec touch {} \;
+      - aws codepipeline get-pipeline-state --name pro-graphql-pipeline > etc/revision.json
+      - cp -R etc node_modules src/
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - aws cloudformation package --template sam_template.yml --s3-bucket $S3_ARTIFACT_BUCKET --output-template packaged-sam.yml
+artifacts:
+  files:
+    - packaged-sam.yml
+cache:
+  paths:
+    - '/usr/local/bin/'
+  

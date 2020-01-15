@@ -1,0 +1,30 @@
+{
+  "name": "pro-graph",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ailytic/pro_graphql"
+  },
+  "main": "src/app.js",
+  "scripts": {
+    "install": "find ./node_modules/* -mtime +10950 -exec touch {} \\;",
+    "dev": "NODE_ENV=development DB_HOST=localhost TENANT=twe_dev DB_USER=root DB_PASSWORD= nodemon src/app.local.js",
+    "test": "jest",
+    "start": "node ./dist/app.js"
+  },
+  "dependencies": {
+    "archen": ">=1.1.8",
+    "jsonwebtoken": "^8.2.1",
+    "mysql": "^2.15.0",
+    "raven-js": "^3.26.3"
+  },
+  "devDependencies": {
+    "jest": "^22.4.1",
+    "nodemon": "^1.15.1",
+    "aws-serverless-express": "^3.2.0",
+    "express": "^4.15.2",
+    "express-graphql": "^0.6.11",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4"
+  }
+}

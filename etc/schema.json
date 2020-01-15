@@ -1,0 +1,5601 @@
+{
+    "name": "newine",
+    "tables": [
+        {
+            "name": "availability_template",
+            "auto_increment": 6,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "size": 100,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "availability_template_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "name",
+                    "unique": true,
+                    "columns": [
+                        "name",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "availability_template_item",
+            "auto_increment": 26,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "availability_template_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "day_of_the_week",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "start_time",
+                    "type": "bigint",
+                    "nullable": true
+                },
+                {
+                    "name": "end_time",
+                    "type": "bigint",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "availability_template_item_ibfk_1",
+                    "columns": [
+                        "availability_template_id"
+                    ],
+                    "references": {
+                        "table": "availability_template",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "availability_template_id",
+                    "unique": true,
+                    "columns": [
+                        "availability_template_id",
+                        "day_of_the_week",
+                        "start_time"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "calendarised_availability_template_set",
+            "auto_increment": 6,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "size": 80,
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "calendarised_availability_template_set_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "name",
+                    "unique": true,
+                    "columns": [
+                        "name",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "calendarised_availability_template_set_item",
+            "auto_increment": 6,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "calendarised_availability_template_set_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "start_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "end_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "availability_template_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "calendarised_availability_template_set_item_ibfk_1",
+                    "columns": [
+                        "calendarised_availability_template_set_id"
+                    ],
+                    "references": {
+                        "table": "calendarised_availability_template_set",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "calendarised_availability_template_set_item_ibfk_2",
+                    "columns": [
+                        "availability_template_id"
+                    ],
+                    "references": {
+                        "table": "availability_template",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "calendarised_availability_template_set_id",
+                    "unique": true,
+                    "columns": [
+                        "calendarised_availability_template_set_id",
+                        "start_time"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "calendarised_throughput_set",
+            "auto_increment": 236,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "size": 80,
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "calendarised_throughput_set_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "name",
+                    "unique": true,
+                    "columns": [
+                        "name",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "calendarised_throughput_set_item",
+            "auto_increment": 236,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "calendarised_throughput_set_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "start_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "end_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "unit_of_time",
+                    "type": "varchar",
+                    "size": 20,
+                    "nullable": true
+                },
+                {
+                    "name": "material_definition_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_segment_equipment_specification_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_segment_personnel_specification_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "calendarised_throughput_set_item_ibfk_1",
+                    "columns": [
+                        "calendarised_throughput_set_id"
+                    ],
+                    "references": {
+                        "table": "calendarised_throughput_set",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "calendarised_throughput_set_item_ibfk_2",
+                    "columns": [
+                        "material_definition_id"
+                    ],
+                    "references": {
+                        "table": "material_definition",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "calendarised_throughput_set_item_ibfk_3",
+                    "columns": [
+                        "operations_segment_equipment_specification_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment_equipment_specification",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "calendarised_throughput_set_item_ibfk_4",
+                    "columns": [
+                        "operations_segment_personnel_specification_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment_personnel_specification",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "calendarised_throughput_set_id",
+                    "unique": true,
+                    "columns": [
+                        "calendarised_throughput_set_id",
+                        "start_time"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "changeover_set",
+            "auto_increment": 6,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "size": 80,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "default_time",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "changeover_set_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "name",
+                    "unique": true,
+                    "columns": [
+                        "name",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "changeover_set_item",
+            "auto_increment": 91,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "changeover_set_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "from_value_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "to_value_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "time",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "optimisation_property_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "changeover_set_item_ibfk_1",
+                    "columns": [
+                        "changeover_set_id"
+                    ],
+                    "references": {
+                        "table": "changeover_set",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "changeover_set_item_ibfk_2",
+                    "columns": [
+                        "from_value_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_property_value",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "changeover_set_item_ibfk_3",
+                    "columns": [
+                        "to_value_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_property_value",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "changeover_set_item_ibfk_4",
+                    "columns": [
+                        "operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "changeover_set_item_ibfk_5",
+                    "columns": [
+                        "optimisation_property_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_property",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "changeover_set_id",
+                    "unique": true,
+                    "columns": [
+                        "changeover_set_id",
+                        "from_value_id",
+                        "to_value_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "colour_scheme_item",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "property_value_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "red",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "green",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "blue",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "colour_scheme_item_ibfk_1",
+                    "columns": [
+                        "property_value_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_property_value",
+                        "columns": [
+                            "id"
+                        ]
+                    },
+                    "unique": true
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "configurable_application_parameter",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "size": 255,
+                    "nullable": false
+                },
+                {
+                    "name": "data_type",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": false
+                },
+                {
+                    "name": "value_as_string",
+                    "type": "varchar",
+                    "size": 255,
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "configurable_application_parameter_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "name",
+                    "unique": true,
+                    "columns": [
+                        "name",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "downtime_period",
+            "auto_increment": 869,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "start_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "end_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "percentage_availability",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "downtime_period_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "external_id",
+                    "unique": true,
+                    "columns": [
+                        "external_id",
+                        "start_time",
+                        "end_time",
+                        "percentage_availability",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "equipment",
+            "auto_increment": 16,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "equipment_level",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "changeover_set_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "calendarised_availability_template_set_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "optimisation_hierarchy_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "optimisation_preferred_sequence_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "equipment_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_ibfk_2",
+                    "columns": [
+                        "changeover_set_id"
+                    ],
+                    "references": {
+                        "table": "changeover_set",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_ibfk_3",
+                    "columns": [
+                        "calendarised_availability_template_set_id"
+                    ],
+                    "references": {
+                        "table": "calendarised_availability_template_set",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_ibfk_4",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_ibfk_5",
+                    "columns": [
+                        "optimisation_hierarchy_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_hierarchy",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_ibfk_6",
+                    "columns": [
+                        "optimisation_preferred_sequence_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_preferred_sequence",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "external_id",
+                    "unique": true,
+                    "columns": [
+                        "external_id",
+                        "hierarchy_scope_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "equipment_capability",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "equipment_id",
+                    "type": "int",
+                    "nullable": false
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "capability_type",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "start_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "end_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "reason",
+                    "type": "text",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "equipment_capability_ibfk_1",
+                    "columns": [
+                        "equipment_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_capability_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_capability_ibfk_3",
+                    "columns": [
+                        "operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "equipment_child",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "parent_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "child_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "equipment_child_ibfk_1",
+                    "columns": [
+                        "parent_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_child_ibfk_2",
+                    "columns": [
+                        "child_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "parent_id",
+                    "unique": true,
+                    "columns": [
+                        "parent_id",
+                        "child_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "equipment_class",
+            "auto_increment": 18,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "equipment_level",
+                    "type": "varchar",
+                    "size": 80,
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "equipment_class_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_class_ibfk_2",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "external_id",
+                    "unique": true,
+                    "columns": [
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "equipment_class_equipment_member",
+            "auto_increment": 31,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "equipment_class_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "equipment_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "equipment_class_equipment_member_ibfk_1",
+                    "columns": [
+                        "equipment_class_id"
+                    ],
+                    "references": {
+                        "table": "equipment_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_class_equipment_member_ibfk_2",
+                    "columns": [
+                        "equipment_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "equipment_class_id",
+                    "unique": true,
+                    "columns": [
+                        "equipment_class_id",
+                        "equipment_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "equipment_descendant",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "ascendant_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "descendant_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "equipment_descendant_ibfk_1",
+                    "columns": [
+                        "ascendant_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_descendant_ibfk_2",
+                    "columns": [
+                        "descendant_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "ascendant_id",
+                    "unique": true,
+                    "columns": [
+                        "ascendant_id",
+                        "descendant_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "equipment_downtime_period",
+            "auto_increment": 869,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "equipment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "downtime_period_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "equipment_downtime_period_ibfk_1",
+                    "columns": [
+                        "equipment_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "equipment_downtime_period_ibfk_2",
+                    "columns": [
+                        "downtime_period_id"
+                    ],
+                    "references": {
+                        "table": "downtime_period",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "equipment_id",
+                    "unique": true,
+                    "columns": [
+                        "equipment_id",
+                        "downtime_period_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "equipment_property",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "equipment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "value",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "data_type",
+                    "type": "text",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "equipment_property_ibfk_1",
+                    "columns": [
+                        "equipment_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "equipment_id",
+                    "unique": true,
+                    "columns": [
+                        "equipment_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "hierarchy_scope",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "equipment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "parent_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "hierarchy_scope_ibfk_1",
+                    "columns": [
+                        "parent_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "hierarchy_scope_ibfk_2",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "hierarchy_scope_ibfk_3",
+                    "columns": [
+                        "equipment_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "parent_id",
+                    "unique": true,
+                    "columns": [
+                        "parent_id",
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "hierarchy_scope_descendant",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "ascendant_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "descendant_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "hierarchy_scope_descendant_ibfk_1",
+                    "columns": [
+                        "ascendant_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "hierarchy_scope_descendant_ibfk_2",
+                    "columns": [
+                        "descendant_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "ascendant_id",
+                    "unique": true,
+                    "columns": [
+                        "ascendant_id",
+                        "descendant_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "material_definition",
+            "auto_increment": 55,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "material_definition_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "material_definition_ibfk_2",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "material_lot",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "material_definition_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operational_location_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "date",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "material_lot_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "material_lot_ibfk_2",
+                    "columns": [
+                        "material_definition_id"
+                    ],
+                    "references": {
+                        "table": "material_definition",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "material_lot_ibfk_3",
+                    "columns": [
+                        "operational_location_id"
+                    ],
+                    "references": {
+                        "table": "operational_location",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "material_lot_ibfk_4",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id",
+                        "date",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "material_property",
+            "auto_increment": 163,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "material_definition_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "value",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "data_type",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "material_property_ibfk_1",
+                    "columns": [
+                        "material_definition_id"
+                    ],
+                    "references": {
+                        "table": "material_definition",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "material_definition_id",
+                    "unique": true,
+                    "columns": [
+                        "material_definition_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "open_purchase_order",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "material_definition_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "date",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "open_purchase_order_ibfk_1",
+                    "columns": [
+                        "material_definition_id"
+                    ],
+                    "references": {
+                        "table": "material_definition",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "open_purchase_order_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "open_purchase_order_ibfk_3",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id",
+                        "date",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operational_location",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "availabile_for_use",
+                    "type": "tinyint",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operational_location_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operational_location_ibfk_2",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "external_id",
+                    "unique": true,
+                    "columns": [
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_definition",
+            "auto_increment": 236,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_type",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "version",
+                    "type": "varchar",
+                    "size": 100,
+                    "nullable": true
+                },
+                {
+                    "name": "operations_definition_class_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_definition_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_definition_ibfk_2",
+                    "columns": [
+                        "operations_definition_class_id"
+                    ],
+                    "references": {
+                        "table": "operations_definition_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id",
+                        "operations_definition_class_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_definition_class",
+            "auto_increment": 55,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_type",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_definition_class_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_definition_class_ibfk_2",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "external_id",
+                    "unique": true,
+                    "columns": [
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_request",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "start_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "end_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_type",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "request_state",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "priority",
+                    "type": "varchar",
+                    "size": 10,
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_request_profile_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_request_ibfk_1",
+                    "columns": [
+                        "operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_request_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_request_ibfk_3",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_request_ibfk_4",
+                    "columns": [
+                        "operations_request_profile_id"
+                    ],
+                    "references": {
+                        "table": "operations_request_profile",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "scenario_id",
+                    "unique": true,
+                    "columns": [
+                        "scenario_id",
+                        "operations_segment_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_request_equipment",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "operations_request_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "equipment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_segment_equipment_specification_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_request_equipment_ibfk_1",
+                    "columns": [
+                        "operations_request_id"
+                    ],
+                    "references": {
+                        "table": "operations_request",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_request_equipment_ibfk_2",
+                    "columns": [
+                        "equipment_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_request_equipment_ibfk_3",
+                    "columns": [
+                        "operations_segment_equipment_specification_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment_equipment_specification",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "operations_request_id",
+                    "unique": true,
+                    "columns": [
+                        "operations_request_id",
+                        "operations_segment_equipment_specification_id",
+                        "equipment_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_request_personnel",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "operations_request_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "person_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_segment_personnel_specification_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_request_personnel_ibfk_1",
+                    "columns": [
+                        "operations_request_id"
+                    ],
+                    "references": {
+                        "table": "operations_request",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_request_personnel_ibfk_2",
+                    "columns": [
+                        "person_id"
+                    ],
+                    "references": {
+                        "table": "person",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_request_personnel_ibfk_3",
+                    "columns": [
+                        "operations_segment_personnel_specification_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment_personnel_specification",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "operations_request_id",
+                    "unique": true,
+                    "columns": [
+                        "operations_request_id",
+                        "operations_segment_personnel_specification_id",
+                        "person_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_request_profile",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "order_item_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "startup_cost",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_request_profile_ibfk_1",
+                    "columns": [
+                        "order_item_id"
+                    ],
+                    "references": {
+                        "table": "order_item",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_segment",
+            "auto_increment": 236,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_type",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "version",
+                    "type": "varchar",
+                    "size": 100,
+                    "nullable": true
+                },
+                {
+                    "name": "duration",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "duration_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "parent_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_definition_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "calendarised_throughput_set_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_segment_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_ibfk_2",
+                    "columns": [
+                        "parent_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_ibfk_3",
+                    "columns": [
+                        "operations_definition_id"
+                    ],
+                    "references": {
+                        "table": "operations_definition",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_ibfk_4",
+                    "columns": [
+                        "calendarised_throughput_set_id"
+                    ],
+                    "references": {
+                        "table": "calendarised_throughput_set",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "operations_definition_id",
+                    "unique": true,
+                    "columns": [
+                        "operations_definition_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_segment_dependency",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "from_operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "to_operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 100,
+                    "nullable": true
+                },
+                {
+                    "name": "dependency_type",
+                    "type": "varchar",
+                    "size": 100,
+                    "nullable": true
+                },
+                {
+                    "name": "dependency_factor",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "dependency_factor_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_segment_dependency_ibfk_1",
+                    "columns": [
+                        "from_operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_dependency_ibfk_2",
+                    "columns": [
+                        "to_operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "from_operations_segment_id",
+                    "unique": true,
+                    "columns": [
+                        "from_operations_segment_id",
+                        "to_operations_segment_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_segment_descendant",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "ascendant_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "descendant_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_segment_descendant_ibfk_1",
+                    "columns": [
+                        "ascendant_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_descendant_ibfk_2",
+                    "columns": [
+                        "descendant_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "ascendant_id",
+                    "unique": true,
+                    "columns": [
+                        "ascendant_id",
+                        "descendant_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_segment_equipment_specification",
+            "auto_increment": 454,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "equipment_class_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "equipment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "equipment_use",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "operational_location_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "ignore_availability",
+                    "type": "tinyint",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_segment_equipment_specification_ibfk_1",
+                    "columns": [
+                        "operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_equipment_specification_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_equipment_specification_ibfk_3",
+                    "columns": [
+                        "equipment_class_id"
+                    ],
+                    "references": {
+                        "table": "equipment_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_equipment_specification_ibfk_4",
+                    "columns": [
+                        "equipment_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_equipment_specification_ibfk_5",
+                    "columns": [
+                        "operational_location_id"
+                    ],
+                    "references": {
+                        "table": "operational_location",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "operations_segment_id",
+                    "unique": true,
+                    "columns": [
+                        "operations_segment_id",
+                        "equipment_class_id",
+                        "equipment_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_segment_material_specification",
+            "auto_increment": 236,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "material_definition_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "material_use",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "operational_location_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "parent_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_segment_material_specification_ibfk_1",
+                    "columns": [
+                        "operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_material_specification_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_material_specification_ibfk_3",
+                    "columns": [
+                        "material_definition_id"
+                    ],
+                    "references": {
+                        "table": "material_definition",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_material_specification_ibfk_4",
+                    "columns": [
+                        "operational_location_id"
+                    ],
+                    "references": {
+                        "table": "operational_location",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_material_specification_ibfk_5",
+                    "columns": [
+                        "parent_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment_material_specification",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "operations_segment_id",
+                    "unique": true,
+                    "columns": [
+                        "operations_segment_id",
+                        "material_definition_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_segment_personnel_specification",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "person_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "personnel_class_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "personnel_use",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "operational_location_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "ignore_availability",
+                    "type": "tinyint",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_segment_personnel_specification_ibfk_1",
+                    "columns": [
+                        "operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_personnel_specification_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_personnel_specification_ibfk_3",
+                    "columns": [
+                        "person_id"
+                    ],
+                    "references": {
+                        "table": "person",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_personnel_specification_ibfk_4",
+                    "columns": [
+                        "personnel_class_id"
+                    ],
+                    "references": {
+                        "table": "personnel_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "operations_segment_personnel_specification_ibfk_5",
+                    "columns": [
+                        "operational_location_id"
+                    ],
+                    "references": {
+                        "table": "operational_location",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "operations_segment_id",
+                    "unique": true,
+                    "columns": [
+                        "operations_segment_id",
+                        "personnel_class_id",
+                        "person_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "operations_segment_property",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "value",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "data_type",
+                    "type": "text",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "operations_segment_property_ibfk_1",
+                    "columns": [
+                        "operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "operations_segment_id",
+                    "unique": true,
+                    "columns": [
+                        "operations_segment_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "optimisation_hierarchy",
+            "auto_increment": 4,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "optimisation_hierarchy_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "external_id",
+                    "unique": true,
+                    "columns": [
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "optimisation_hierarchy_attribute",
+            "auto_increment": 10,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "optimisation_hierarchy_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "optimisation_property_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "priority",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "optimisation_hierarchy_attribute_ibfk_1",
+                    "columns": [
+                        "optimisation_hierarchy_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_hierarchy",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "optimisation_hierarchy_attribute_ibfk_2",
+                    "columns": [
+                        "optimisation_property_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_property",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "optimisation_hierarchy_id",
+                    "unique": true,
+                    "columns": [
+                        "optimisation_hierarchy_id",
+                        "optimisation_property_id",
+                        "priority"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "optimisation_preferred_sequence",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "optimisation_property_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "optimisation_preferred_sequence_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "optimisation_preferred_sequence_ibfk_2",
+                    "columns": [
+                        "optimisation_property_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_property",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "external_id",
+                    "unique": true,
+                    "columns": [
+                        "external_id",
+                        "optimisation_property_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "optimisation_preferred_sequence_item",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "optimisation_preferred_sequence_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "optimisation_property_value_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "priority",
+                    "type": "int",
+                    "nullable": false
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "optimisation_preferred_sequence_item_ibfk_1",
+                    "columns": [
+                        "optimisation_preferred_sequence_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_preferred_sequence",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "optimisation_preferred_sequence_item_ibfk_2",
+                    "columns": [
+                        "optimisation_property_value_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_property_value",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "optimisation_preferred_sequence_id",
+                    "unique": true,
+                    "columns": [
+                        "optimisation_preferred_sequence_id",
+                        "optimisation_property_value_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "optimisation_property",
+            "auto_increment": 4,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "optimisation_property_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "name",
+                    "unique": true,
+                    "columns": [
+                        "name",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "optimisation_property_value",
+            "auto_increment": 10,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "optimisation_property_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "value",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "data_type",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "optimisation_property_value_ibfk_1",
+                    "columns": [
+                        "optimisation_property_id"
+                    ],
+                    "references": {
+                        "table": "optimisation_property",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "optimisation_property_id",
+                    "unique": true,
+                    "columns": [
+                        "optimisation_property_id",
+                        "value"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "order",
+            "auto_increment": 1110,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "date",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "earliest_start_date",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "status_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "priority",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "order_ibfk_1",
+                    "columns": [
+                        "status_id"
+                    ],
+                    "references": {
+                        "table": "order_status",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "order_ibfk_2",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "external_id",
+                    "unique": true,
+                    "columns": [
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "order_item",
+            "auto_increment": 3808,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "order_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_definition_class_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "order_item_ibfk_1",
+                    "columns": [
+                        "order_id"
+                    ],
+                    "references": {
+                        "table": "order",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "order_item_ibfk_2",
+                    "columns": [
+                        "operations_definition_class_id"
+                    ],
+                    "references": {
+                        "table": "operations_definition_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "order_id",
+                    "unique": true,
+                    "columns": [
+                        "order_id",
+                        "operations_definition_class_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "order_property",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "order_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "value",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "data_type",
+                    "type": "text",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "order_property_ibfk_1",
+                    "columns": [
+                        "order_id"
+                    ],
+                    "references": {
+                        "table": "order",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "order_id",
+                    "unique": true,
+                    "columns": [
+                        "order_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "order_status",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "status",
+                    "type": "varchar",
+                    "size": 20,
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "order_status_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "status",
+                    "unique": true,
+                    "columns": [
+                        "status",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "person",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 100,
+                    "nullable": true
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "calendarised_availability_template_set_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "person_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "person_ibfk_2",
+                    "columns": [
+                        "calendarised_availability_template_set_id"
+                    ],
+                    "references": {
+                        "table": "calendarised_availability_template_set",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "person_ibfk_3",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "person_downtime_period",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "person_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "downtime_period_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "person_downtime_period_ibfk_1",
+                    "columns": [
+                        "person_id"
+                    ],
+                    "references": {
+                        "table": "person",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "person_downtime_period_ibfk_2",
+                    "columns": [
+                        "downtime_period_id"
+                    ],
+                    "references": {
+                        "table": "downtime_period",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "person_id",
+                    "unique": true,
+                    "columns": [
+                        "person_id",
+                        "downtime_period_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "person_property",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "person_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "value",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "data_type",
+                    "type": "text",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "person_property_ibfk_1",
+                    "columns": [
+                        "person_id"
+                    ],
+                    "references": {
+                        "table": "person",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "person_id",
+                    "unique": true,
+                    "columns": [
+                        "person_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "personnel_capability",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "personnel_class_id",
+                    "type": "int",
+                    "nullable": false
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "capability_type",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "start_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "end_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "reason",
+                    "type": "text",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "personnel_capability_ibfk_1",
+                    "columns": [
+                        "personnel_class_id"
+                    ],
+                    "references": {
+                        "table": "personnel_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "personnel_capability_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "personnel_capability_ibfk_3",
+                    "columns": [
+                        "operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "personnel_class",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "personnel_class_ibfk_1",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "personnel_class_ibfk_2",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "external_id",
+                    "unique": true,
+                    "columns": [
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "personnel_class_person_member",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "personnel_class_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "person_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "personnel_class_person_member_ibfk_1",
+                    "columns": [
+                        "personnel_class_id"
+                    ],
+                    "references": {
+                        "table": "personnel_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "personnel_class_person_member_ibfk_2",
+                    "columns": [
+                        "person_id"
+                    ],
+                    "references": {
+                        "table": "person",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "personnel_class_id",
+                    "unique": true,
+                    "columns": [
+                        "personnel_class_id",
+                        "person_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "personnel_class_property",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "personnel_class_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "value",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "data_type",
+                    "type": "text",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "personnel_class_property_ibfk_1",
+                    "columns": [
+                        "personnel_class_id"
+                    ],
+                    "references": {
+                        "table": "personnel_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "personnel_class_id",
+                    "unique": true,
+                    "columns": [
+                        "personnel_class_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "personnel_position",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "personnel_class_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "personnel_position_ibfk_1",
+                    "columns": [
+                        "personnel_class_id"
+                    ],
+                    "references": {
+                        "table": "personnel_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "personnel_position_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "personnel_position_ibfk_3",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "personnel_position_person_member",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "personnel_position_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "person_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "personnel_position_person_member_ibfk_1",
+                    "columns": [
+                        "personnel_position_id"
+                    ],
+                    "references": {
+                        "table": "personnel_position",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "personnel_position_person_member_ibfk_2",
+                    "columns": [
+                        "person_id"
+                    ],
+                    "references": {
+                        "table": "person",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "personnel_position_id",
+                    "unique": true,
+                    "columns": [
+                        "personnel_position_id",
+                        "person_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "personnel_position_property",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "personnel_position_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "value",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "data_type",
+                    "type": "text",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "personnel_position_property_ibfk_1",
+                    "columns": [
+                        "personnel_position_id"
+                    ],
+                    "references": {
+                        "table": "personnel_position",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "personnel_position_id",
+                    "unique": true,
+                    "columns": [
+                        "personnel_position_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "scenario",
+            "auto_increment": 2,
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "size": 255,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "varchar",
+                    "size": 255,
+                    "nullable": true
+                },
+                {
+                    "name": "start_date",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "status",
+                    "type": "varchar",
+                    "size": 255,
+                    "nullable": true
+                },
+                {
+                    "name": "updated_at",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "created_at",
+                    "type": "datetime",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "name",
+                    "unique": true,
+                    "columns": [
+                        "name"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "scenario_attribute",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "changeover_time",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "changeover_count",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "waiting_time",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "inventory_shortage",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "overdue_count",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "conflict_count",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "scenario_attribute_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    },
+                    "unique": true
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "segment_requirement",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "operations_request_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "parent_segment_requirement_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "operations_segment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "start_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "end_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "segment_state",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "segment_requirement_ibfk_1",
+                    "columns": [
+                        "operations_request_id"
+                    ],
+                    "references": {
+                        "table": "operations_request",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_ibfk_2",
+                    "columns": [
+                        "parent_segment_requirement_id"
+                    ],
+                    "references": {
+                        "table": "segment_requirement",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_ibfk_3",
+                    "columns": [
+                        "operations_segment_id"
+                    ],
+                    "references": {
+                        "table": "operations_segment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_ibfk_4",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "operations_request_id",
+                    "unique": true,
+                    "columns": [
+                        "operations_request_id",
+                        "parent_segment_requirement_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "segment_requirement_descendant",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "ascendant_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "descendant_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "segment_requirement_descendant_ibfk_1",
+                    "columns": [
+                        "ascendant_id"
+                    ],
+                    "references": {
+                        "table": "segment_requirement",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_descendant_ibfk_2",
+                    "columns": [
+                        "descendant_id"
+                    ],
+                    "references": {
+                        "table": "segment_requirement",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "ascendant_id",
+                    "unique": true,
+                    "columns": [
+                        "ascendant_id",
+                        "descendant_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "segment_requirement_equipment_requirement",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "segment_requirement_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "equipment_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "operational_location_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "segment_requirement_equipment_requirement_ibfk_1",
+                    "columns": [
+                        "segment_requirement_id"
+                    ],
+                    "references": {
+                        "table": "segment_requirement",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_equipment_requirement_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_equipment_requirement_ibfk_3",
+                    "columns": [
+                        "equipment_id"
+                    ],
+                    "references": {
+                        "table": "equipment",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_equipment_requirement_ibfk_4",
+                    "columns": [
+                        "operational_location_id"
+                    ],
+                    "references": {
+                        "table": "operational_location",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "segment_requirement_material_requirement",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "segment_requirement_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "material_definition_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "operational_location_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "material_lot_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "material_use",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "remaining_quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "remaining_quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "parent_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "segment_requirement_material_requirement_ibfk_1",
+                    "columns": [
+                        "segment_requirement_id"
+                    ],
+                    "references": {
+                        "table": "segment_requirement",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_material_requirement_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_material_requirement_ibfk_3",
+                    "columns": [
+                        "material_definition_id"
+                    ],
+                    "references": {
+                        "table": "material_definition",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_material_requirement_ibfk_4",
+                    "columns": [
+                        "operational_location_id"
+                    ],
+                    "references": {
+                        "table": "operational_location",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_material_requirement_ibfk_5",
+                    "columns": [
+                        "material_lot_id"
+                    ],
+                    "references": {
+                        "table": "material_lot",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_material_requirement_ibfk_6",
+                    "columns": [
+                        "parent_id"
+                    ],
+                    "references": {
+                        "table": "segment_requirement_material_requirement",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "segment_requirement_personnel_requirement",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "segment_requirement_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "person_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "personnel_class_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity",
+                    "type": "double",
+                    "nullable": true
+                },
+                {
+                    "name": "quantity_unit_of_measure",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                },
+                {
+                    "name": "description",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "operational_location_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "personnel_use",
+                    "type": "varchar",
+                    "size": 60,
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "segment_requirement_personnel_requirement_ibfk_1",
+                    "columns": [
+                        "segment_requirement_id"
+                    ],
+                    "references": {
+                        "table": "segment_requirement",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_personnel_requirement_ibfk_2",
+                    "columns": [
+                        "hierarchy_scope_id"
+                    ],
+                    "references": {
+                        "table": "hierarchy_scope",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_personnel_requirement_ibfk_3",
+                    "columns": [
+                        "person_id"
+                    ],
+                    "references": {
+                        "table": "person",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_personnel_requirement_ibfk_4",
+                    "columns": [
+                        "personnel_class_id"
+                    ],
+                    "references": {
+                        "table": "personnel_class",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "name": "segment_requirement_personnel_requirement_ibfk_5",
+                    "columns": [
+                        "operational_location_id"
+                    ],
+                    "references": {
+                        "table": "operational_location",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "hierarchy_scope_id",
+                    "unique": true,
+                    "columns": [
+                        "hierarchy_scope_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "segment_requirement_property",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "segment_requirement_id",
+                    "type": "int",
+                    "nullable": true
+                },
+                {
+                    "name": "external_id",
+                    "type": "varchar",
+                    "size": 200,
+                    "nullable": true
+                },
+                {
+                    "name": "value",
+                    "type": "text",
+                    "nullable": true
+                },
+                {
+                    "name": "data_type",
+                    "type": "text",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "segment_requirement_property_ibfk_1",
+                    "columns": [
+                        "segment_requirement_id"
+                    ],
+                    "references": {
+                        "table": "segment_requirement",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "segment_requirement_id",
+                    "unique": true,
+                    "columns": [
+                        "segment_requirement_id",
+                        "external_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "time_period",
+            "charset": "latin1",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "nullable": false,
+                    "autoIncrement": true
+                },
+                {
+                    "name": "start_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "end_time",
+                    "type": "datetime",
+                    "nullable": true
+                },
+                {
+                    "name": "scenario_id",
+                    "type": "int",
+                    "nullable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "name": "time_period_ibfk_1",
+                    "columns": [
+                        "scenario_id"
+                    ],
+                    "references": {
+                        "table": "scenario",
+                        "columns": [
+                            "id"
+                        ]
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "start_time",
+                    "unique": true,
+                    "columns": [
+                        "start_time",
+                        "scenario_id"
+                    ]
+                }
+            ]
+        }
+    ]
+}
